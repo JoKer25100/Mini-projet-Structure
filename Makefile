@@ -1,5 +1,5 @@
 CFLAGS = -g -Wno-unused-parameter -Wall -O2
-PROGRAMS = main
+PROGRAMS = main test
 OBJS = biblioLC.o entreeSortieLC.o main.o
 
 .PHONY: all clean
