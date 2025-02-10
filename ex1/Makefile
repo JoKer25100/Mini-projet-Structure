@@ -1,15 +1,13 @@
 CFLAGS = -g -Wno-unused-parameter -Wall -O2
-PROGRAMS = main test
+PROGRAMS = main main2
 OBJS = biblioLC.o entreeSortieLC.o main.o
+OBJS2 = biblioH.o main.o
 
 .PHONY: all clean
 
 all: $(PROGRAMS)
 
 main: $(OBJS)
-	gcc -o $@ $(CFLAGS) $^
-
-test: biblioLC.o entreeSortieLC.o test.o
 	gcc -o $@ $(CFLAGS) $^
 
 biblioLC.o: biblioLC.c biblioLC.h
@@ -21,8 +19,14 @@ entreeSortieLC.o: entreeSortieLC.c entreeSortieLC.h biblioLC.h
 main.o: main.c biblioLC.h entreeSortieLC.h 
 	gcc $(CFLAGS) -c main.c
 
-test.o: test.c biblioLC.h entreeSortieLC.h
-	gcc $(CFLAGS) -c test.c
-	
+main2: $(OBJS)
+	gcc -o $@ $(CFLAGS) $^
+
+biblioH.o: biblioH.c biblioH.h
+	gcc $(CFLAGS) -c biblioH.c
+
+main2.o: main.c biblioH.h 
+	gcc $(CFLAGS) -c main.c
+    
 clean:
 	rm -f *.o *~ $(PROGRAMS)
