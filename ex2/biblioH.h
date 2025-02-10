@@ -3,7 +3,7 @@
 
 typedef struct livreh{
     int clef;
-    struct livreh* suivant;
+    struct livreh*  suivant;
 } LivreH;
 
 typedef struct table{
@@ -11,5 +11,7 @@ typedef struct table{
     int m;
     LivreH** T;
 }BiblioH;
+
+int fonctionClef(char* auteur);
 
 #endif
