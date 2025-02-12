@@ -118,3 +118,62 @@ LivreH* cherche_titre(BiblioH* b,char* titre){
     }
     return NULL;
 }
+
+BiblioH* cherche_auteur(BiblioH* b,char* auteur){
+    BiblioH* res = creer_biblio(b->m);
+    LivreH* tmp = b->T[fonctionHachage(fonctionClef(auteur),b->m)];
+    while(tmp!=NULL){
+        if (strcmp(tmp->auteur,auteur)==0) inserer(res,tmp->num,tmp->titre,tmp->auteur);
+        tmp = tmp->suivant;
+    }
+    return res;
+}
+
+void suppression_livre(BiblioH* b,int num,char* titre,char* auteur){
+    int i = fonctionHachage(fonctionClef(auteur),b->m);
+    LivreH *tmp = b->T[i];
+    if ((strcmp(tmp->auteur,auteur)==0)&&(strcmp(tmp->titre,titre)==0)&&(tmp->num==num)){
+        b->T[i] = b->T[i]->suivant;
+        liberer_livre(tmp);
+        printf("Livre supprimé\n");
+        return;
+        }
+
+    while(tmp!=NULL){
+        LivreH* av = tmp;
+        tmp = tmp->suivant;
+        if ((strcmp(tmp->auteur,auteur)==0)&&(strcmp(tmp->titre,titre)==0)&&(tmp->num==num)){
+            av->suivant=tmp->suivant;
+            liberer_livre(tmp);
+            printf("Livre supprimé\n");
+            return;
+        }
+    }
+    printf("Livre non trouvé\n");
+    return;
+}
+
+BiblioH* fusion_biblio(BiblioH* b1, BiblioH* b2){
+    if (b1 == NULL) return b2;
+    if (b2 == NULL) return b1;
+
+    if (b1->nE == 0) {
+        liberer_biblio(b1);
+        return b2;
+    }
+    if (b2->nE == 0) {
+        liberer_biblio(b2);
+        return b1;
+    }
+
+    LivreH* tmp;
+    for (int i = 0; i < b2->m; i++){
+        tmp = b2->T[i];
+        while(tmp){
+            inserer(b1,tmp->num,tmp->titre,tmp->auteur);
+            tmp = tmp->suivant;
+        }
+    }
+    liberer_biblio(b2);
+    return b1;
+}

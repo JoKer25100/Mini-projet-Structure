@@ -114,11 +114,11 @@ Biblio* fusion_biblio(Biblio* b1, Biblio* b2){
     if (b2 == NULL) return b1;
 
     if (b1->L == NULL) {
-        free(b1);
+        liberer_biblio(b1);
         return b2;
     }
     if (b2->L == NULL) {
-        free(b2);
+        liberer_biblio(b2);
         return b1;
     }
 
