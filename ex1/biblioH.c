@@ -59,3 +59,19 @@ int fonctionHachage(int cle, int m){
     int res = (int) A;
     return res;
 }
+
+void inserer(BiblioH* b,int num,char* titre,char* auteur){
+    int fctH = fonctionHachage(fonctionClef(auteur),b->m);
+    if (fctH>=b->m) {
+        printf("Erreur dans les calculs");
+        exit(1);
+    }
+    LivreH* l = creer_livre(num,titre,auteur);
+    LivreH* tmp = b->T[fctH];
+    if (tmp == NULL) tmp = l;
+    else {
+        l->suivant = tmp; 
+        tmp = l;
+    }
+    b->nE++;
+}

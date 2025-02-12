@@ -9,7 +9,8 @@ int main(int argc, char** argv){
         return 1;
     }
     
-    printf("%d",fonctionClef(argv[1]));
+    printf("%d\n",fonctionClef(argv[1]));
+    printf("%d\n",fonctionHachage(atoi(argv[1]), 10));
 
     return 0;
 }
