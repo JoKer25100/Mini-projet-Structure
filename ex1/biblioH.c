@@ -64,7 +64,7 @@ void inserer(BiblioH* b,int num,char* titre,char* auteur){
     int fctH = fonctionHachage(fonctionClef(auteur),b->m);
     if (fctH>=b->m) {
         printf("Erreur dans les calculs");
-        exit(1);
+        return;
     }
     LivreH* l = creer_livre(num,titre,auteur);
     LivreH* tmp = b->T[fctH];
@@ -74,4 +74,47 @@ void inserer(BiblioH* b,int num,char* titre,char* auteur){
         tmp = l;
     }
     b->nE++;
+}
+
+void afficher_livre(LivreH *l){
+    printf("%d %s %s\n",l->num,l->titre,l->auteur);
+}
+
+void afficher_biblio(BiblioH *b) {
+    LivreH* tmp;
+    for (int i = 0; i < b->m; i++){
+        tmp = b->T[i];
+        while(tmp){
+            afficher_livre(tmp);
+            tmp = tmp->suivant;
+        }
+    }
+}
+
+LivreH* cherche_num(BiblioH* b, int num) {
+    LivreH* tmp;
+    for (int i = 0; i < b->m; i++){
+        tmp = b->T[i];
+        while(tmp){
+            if (tmp->num == num){
+                return tmp;
+            }
+            tmp = tmp->suivant;
+        }
+    }
+    return NULL;
+}
+
+LivreH* cherche_titre(BiblioH* b,char* titre){
+    LivreH* tmp;
+    for (int i = 0; i < b->m; i++){
+        tmp = b->T[i];
+        while(tmp){
+            if (strcmp(tmp->titre,titre)==0){
+                return tmp;
+            }
+            tmp = tmp->suivant;
+        }
+    }
+    return NULL;
 }

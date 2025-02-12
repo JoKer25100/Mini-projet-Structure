@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "biblioH.h"
+#include "entreeSortieH.h"
 
 int main(int argc, char** argv){
 
