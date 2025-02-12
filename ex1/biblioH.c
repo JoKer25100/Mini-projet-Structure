@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 int fonctionClef(char* auteur){
     int res =0;
@@ -14,18 +15,22 @@ int fonctionClef(char* auteur){
 LivreH* creer_livre(int num,char* titre,char* auteur){
     LivreH* L = (LivreH*)malloc(sizeof(LivreH));
     L->clef = fonctionClef(auteur);
+    L->num = num;
+    L->titre = strdup(titre);
+    L->auteur = strdup(auteur);
     L->suivant = NULL;
     return L;
 }
 
 void liberer_livre(LivreH* l){
     LivreH* tmp;
-    if (l != NULL) {
+    while (l != NULL) {
         tmp = l;
         l = l->suivant;
+        free(tmp->auteur);
+        free(tmp->titre);
         free(tmp);
     }
-    free(l);
 }
 
 BiblioH* creer_biblio(int m){
@@ -38,10 +43,19 @@ BiblioH* creer_biblio(int m){
     }
     return b;
 }
+
 void liberer_biblio(BiblioH* b){
     for (int i = 0; i < b->m; i++){
         liberer_livre(b->T[i]);
     }
     free(b->T);
     free(b);
+}
+
+int fonctionHachage(int cle, int m){
+    double A = (sqrt(5)-1)/2;
+    int arr= (int)(cle*A);
+    A = m*(cle*A-arr);
+    int res = (int) A;
+    return res;
 }
