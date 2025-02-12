@@ -177,3 +177,29 @@ BiblioH* fusion_biblio(BiblioH* b1, BiblioH* b2){
     liberer_biblio(b2);
     return b1;
 }
+
+BiblioH* doublon_biblio(BiblioH *b) {
+    BiblioH* res = creer_biblio(b->m);
+    LivreH* tmp;
+    LivreH* tmp2;
+    for (int i = 0; i < b->m; i++){
+        tmp = b->T[i];
+        while(tmp){
+            for (int j = 0; j < b->m; j++){
+                tmp2 = b->T[j];
+                while(tmp2){
+                    if ((strcmp(tmp->auteur,tmp2->auteur)==0)&&(strcmp(tmp->titre,tmp2->titre)==0)){
+                        LivreH* l = cherche_num(res,tmp->num);
+                        if (l == NULL) {
+                            inserer(res,tmp->num,tmp->titre,tmp->auteur);
+                        }
+                        break;
+                    }
+                    tmp2 = tmp2->suivant;
+                }
+            }
+            tmp = tmp->suivant;
+        }
+    }
+    return res;
+}
