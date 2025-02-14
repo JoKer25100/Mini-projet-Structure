@@ -94,7 +94,7 @@ void suppression_livre(Biblio* b,int num,char* titre,char* auteur){
         printf("Livre supprimé\n");
         return;
         }
-
+    tmp = tmp->suiv;
     while(tmp!=NULL){
         Livre* av = tmp;
         tmp = tmp->suiv;
