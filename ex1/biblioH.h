@@ -4,8 +4,8 @@
 typedef struct livreh{
     int clef;
     int num;
-char* titre;
-char* auteur;
+    char* titre;
+    char* auteur;
     struct livreh* suivant;
 } LivreH;
 
@@ -16,20 +16,20 @@ typedef struct table{
 } BiblioH;
 
 int fonctionClef(char* auteur);
-LivreH* creer_livre(int num, char* titre, char* auteur);
-void liberer_livre(LivreH* l);
-BiblioH* creer_biblio(int m);
-void liberer_biblio(BiblioH* b);
+LivreH* creer_livreH(int num, char* titre, char* auteur);
+void liberer_livreH(LivreH* l);
+BiblioH* creer_biblioH(int m);
+void liberer_biblioH(BiblioH* b);
 int fonctionHachage(int cle, int m);
-void inserer(BiblioH* b,int num,char* titre,char* auteur);
-void afficher_livre(LivreH *l);
-void afficher_biblio(BiblioH *b);
-LivreH* cherche_num(BiblioH* b, int num);
-LivreH* cherche_titre(BiblioH* b,char* titre);
-BiblioH* cherche_auteur(BiblioH* b,char* auteur);
-void suppression_livre(BiblioH* b,int num,char* titre,char* auteur);
-BiblioH* fusion_biblio(BiblioH* b1, BiblioH* b2);
-BiblioH* doublon_biblio(BiblioH *b);
+void insererH(BiblioH* b,int num,char* titre,char* auteur);
+void afficher_livreH(LivreH *l);
+void afficher_biblioH(BiblioH *b);
+LivreH* cherche_numH(BiblioH* b, int num);
+LivreH* cherche_titreH(BiblioH* b,char* titre);
+BiblioH* cherche_auteurH(BiblioH* b,char* auteur);
+void suppression_livreH(BiblioH* b,int num,char* titre,char* auteur);
+BiblioH* fusion_biblioH(BiblioH* b1, BiblioH* b2);
+BiblioH* doublon_biblioH(BiblioH *b);
 
 
 #endif

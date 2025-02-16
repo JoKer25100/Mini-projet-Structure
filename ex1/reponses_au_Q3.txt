@@ -1,0 +1,18 @@
+3.1
+Que le livre soit présent ou non, la recherche est plus rapide sur la structure avec une table de hachage,
+En effet, dès le début on fait nos recherches sur un plus petits échantillons d'oeuvres comparé à la liste.
+En revanche, la recherche est facilité que dans le cas on l'on nous donne le nom de l'auteur afin d'avoir la clé,
+sinon on est obligé de parcourir toutes les oeuvres comme avec une liste classique.
+
+3.2
+Pus on augmente la taille de la table de hachage plus la recherche est rapide, mais cela requiert un peu plus d'espace.
+Cela devient un peu inutile au-dela d'un certain nombre, il faut donc adapter la taille de la table au nombre d'oeuvre que l'on traite.
+
+3.3 
+En dessinant les courbes on remarque bien qu'une liste va prendre beaucoup plus de temps qu'une table de hachage.
+Par exemple pour 50000 livres, une liste prend 4.863084s tandis qu'une table de hachage n'en prend que 0.054155s.
+
+3.4
+Le pire cas attendu pour une est O(n²), tandis que pour une table de hachage, le pire cas attendu est O(n²) mais que
+si chaque livre a une cle similaire ce qui ne risque pas d'arriver et on peut regler ce probleme en augmentant 
+la taille de la tabhe de hachage, generalement on sera plus à une complexité de O(n) pour parcourir toute la bibliotheque.

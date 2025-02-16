@@ -1,0 +1,13 @@
+main: exercice 1
+main2: exercice 2
+
+Le Makefile contient toutes les commandes pour les 2 mains 
+
+make all
+make main 
+make main2
+make main3
+
+a la fermeture la bibliotheque crée est stocké dans le test.txt
+
+main3 ne sert qu'a la question 3 et rend un txt specifie en parametre avec le temps que prends une recherche de double avec liste et table de hachage.

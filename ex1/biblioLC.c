@@ -94,7 +94,7 @@ void suppression_livre(Biblio* b,int num,char* titre,char* auteur){
         printf("Livre supprimé\n");
         return;
         }
-    tmp = tmp->suiv;
+
     while(tmp!=NULL){
         Livre* av = tmp;
         tmp = tmp->suiv;
@@ -140,11 +140,16 @@ Biblio* doublon_biblio(Biblio *b) {
         tmp2 = tmp->suiv;
         while (tmp2 != NULL) {
             if ((strcmp(tmp->auteur, tmp2->auteur) == 0) && (strcmp(tmp->titre, tmp2->titre) == 0)) {
+                // Insérer le premier livre en double
                 Livre* l = cherche_num(res, tmp->num);
                 if (l == NULL) {
                     inserer_en_tete(res, tmp->num, tmp->titre, tmp->auteur);
                 }
-                break;
+                // Insérer le deuxième livre en double
+                l = cherche_num(res, tmp2->num);
+                if (l == NULL) {
+                    inserer_en_tete(res, tmp2->num, tmp2->titre, tmp2->auteur);
+                }
             }
             tmp2 = tmp2->suiv;
         }

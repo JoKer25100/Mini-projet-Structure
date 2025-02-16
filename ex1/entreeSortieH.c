@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-BiblioH* charger_n_entrees(char* nomfic, int n, int m){
+BiblioH* charger_n_entreesH(char* nomfic, int n, int m){
     /*Charger n livres dans une biblio avec une table de hachage de taille m*/
     FILE *f = fopen(nomfic, "r");
     if (f == NULL) {
@@ -14,10 +14,10 @@ BiblioH* charger_n_entrees(char* nomfic, int n, int m){
     int num;
     char titre[256];
     char auteur[256];
-    BiblioH* b = creer_biblio(m);
+    BiblioH* b = creer_biblioH(m);
     for (int i = 0; i < n; i++) {
         if (fscanf(f, "%d %255s %255s\n", &num, titre, auteur) == 3) {
-            inserer(b, num, titre, auteur);
+            insererH(b, num, titre, auteur);
         } else {
             printf("Erreur sur le %dème livre\n", i + 1);
             break;
@@ -28,7 +28,7 @@ BiblioH* charger_n_entrees(char* nomfic, int n, int m){
 }
 
 
-void enregistrer_biblio(BiblioH *b, char* nomfic){
+void enregistrer_biblioH(BiblioH *b, char* nomfic){
     FILE *f=fopen(nomfic,"w");
     if (f==NULL){
         printf("erreur ouverture ficher\n");
